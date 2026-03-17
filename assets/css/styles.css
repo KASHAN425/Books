@@ -102,3 +102,17 @@ body {
 @media (max-width: 768px) {
   #searchInput, #categoryFilter { width: 100%; }
 }
+
+
+.auth-card {
+  border-radius: 18px;
+}
+
+.auth-card .form-control {
+  border-color: #dfe5ff;
+}
+
+.auth-card .form-control:focus {
+  box-shadow: 0 0 0 .2rem rgba(93,95,239,.15);
+  border-color: #9ca7ff;
+}

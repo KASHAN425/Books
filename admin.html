@@ -9,56 +9,87 @@
 </head>
 <body class="admin-body">
   <div class="container py-5">
-    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-      <div>
-        <h1 class="fw-bold gradient-text mb-1">SHAH-WRITES Admin</h1>
-        <p class="text-muted mb-0">Manage eBooks: add, edit, remove, hide/show.</p>
-      </div>
-      <a href="index.html" class="btn btn-outline-primary">← Back to Store</a>
-    </div>
-
-    <div class="row g-4">
-      <div class="col-lg-4">
-        <div class="card border-0 shadow-sm">
-          <div class="card-body">
-            <h5 id="formTitle">Add New Book</h5>
-            <form id="bookForm" class="row g-2">
-              <input type="hidden" id="bookId">
-              <div class="col-12"><input id="title" class="form-control" placeholder="Book title" required></div>
-              <div class="col-12"><input id="author" class="form-control" placeholder="Author" required></div>
-              <div class="col-6"><input id="price" type="number" min="1" class="form-control" placeholder="Price ($)" required></div>
-              <div class="col-6"><input id="rating" type="number" min="1" max="5" class="form-control" placeholder="Rating" required></div>
-              <div class="col-12"><input id="category" class="form-control" placeholder="Category" required></div>
-              <div class="col-12"><input id="cover" class="form-control" placeholder="Cover image URL" required></div>
-              <div class="col-12"><input id="pdf" class="form-control" placeholder="PDF path e.g. pdf/books/sample.pdf" required></div>
-              <div class="col-12"><textarea id="description" class="form-control" rows="3" placeholder="Description" required></textarea></div>
-              <div class="col-12 d-grid"><button class="btn btn-brand" type="submit">Save Book</button></div>
-              <div class="col-12 d-grid"><button id="cancelEdit" class="btn btn-light border d-none" type="button">Cancel Edit</button></div>
+    <div id="adminLoginWrap" class="row justify-content-center">
+      <div class="col-lg-5">
+        <div class="card border-0 shadow-sm auth-card">
+          <div class="card-body p-4 p-lg-5">
+            <h2 class="fw-bold gradient-text mb-2">SHAH-WRITES Admin Login</h2>
+            <p class="text-muted">Enter admin credentials to access dashboard.</p>
+            <form id="adminLoginForm" class="row g-3">
+              <div class="col-12">
+                <label for="adminUsername" class="form-label">Admin Name</label>
+                <input id="adminUsername" class="form-control" required>
+              </div>
+              <div class="col-12">
+                <label for="adminPassword" class="form-label">Password</label>
+                <input id="adminPassword" type="password" class="form-control" required>
+              </div>
+              <div class="col-12 d-grid">
+                <button class="btn btn-brand" type="submit">Login</button>
+              </div>
+              <p id="loginError" class="text-danger small mb-0 d-none">Invalid admin name or password.</p>
             </form>
+            <a href="index.html" class="btn btn-link text-decoration-none px-0 mt-3">← Back to Store</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-8">
-        <div class="card border-0 shadow-sm">
-          <div class="card-body">
-            <h5 class="mb-3">Book Inventory</h5>
-            <div class="table-responsive">
-              <table class="table align-middle">
-                <thead>
-                  <tr>
-                    <th>Title</th><th>Category</th><th>Price</th><th>Status</th><th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="adminBookTable"></tbody>
-              </table>
+    </div>
+
+    <div id="adminDashboard" class="d-none">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+          <h1 class="fw-bold gradient-text mb-1">SHAH-WRITES Admin</h1>
+          <p class="text-muted mb-0">Manage eBooks: add, edit, remove, hide/show.</p>
+        </div>
+        <div class="d-flex gap-2">
+          <a href="index.html" class="btn btn-outline-primary">← Back to Store</a>
+          <button id="logoutBtn" class="btn btn-outline-danger">Logout</button>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <h5 id="formTitle">Add New Book</h5>
+              <form id="bookForm" class="row g-2">
+                <input type="hidden" id="bookId">
+                <div class="col-12"><input id="title" class="form-control" placeholder="Book title" required></div>
+                <div class="col-12"><input id="author" class="form-control" placeholder="Author" required></div>
+                <div class="col-6"><input id="price" type="number" min="1" class="form-control" placeholder="Price ($)" required></div>
+                <div class="col-6"><input id="rating" type="number" min="1" max="5" class="form-control" placeholder="Rating" required></div>
+                <div class="col-12"><input id="category" class="form-control" placeholder="Category" required></div>
+                <div class="col-12"><input id="cover" class="form-control" placeholder="Cover image URL" required></div>
+                <div class="col-12"><input id="pdf" class="form-control" placeholder="PDF path e.g. pdf/books/sample.pdf" required></div>
+                <div class="col-12"><textarea id="description" class="form-control" rows="3" placeholder="Description" required></textarea></div>
+                <div class="col-12 d-grid"><button class="btn btn-brand" type="submit">Save Book</button></div>
+                <div class="col-12 d-grid"><button id="cancelEdit" class="btn btn-light border d-none" type="button">Cancel Edit</button></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <h5 class="mb-3">Book Inventory</h5>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th>Title</th><th>Category</th><th>Price</th><th>Status</th><th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminBookTable"></tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="alert alert-info mt-4 mb-0">
-      Netlify Note: This starter stores data in browser LocalStorage. For production database, connect Netlify Functions to a managed DB (e.g. PlanetScale/Supabase). PHP/MySQL runtime is not available directly on Netlify static hosting.
+      <div class="alert alert-info mt-4 mb-0">
+        Netlify Note: This starter stores data in browser LocalStorage. For production database, connect Netlify Functions to a managed DB (e.g. PlanetScale/Supabase). PHP/MySQL runtime is not available directly on Netlify static hosting.
+      </div>
     </div>
   </div>
 

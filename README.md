@@ -19,3 +19,8 @@ For production DB use Netlify Functions + managed DB service.
 2. Import repo on Netlify.
 3. Publish directory: `.`
 4. Deploy.
+
+
+## Admin access
+- Admin name: `kashanabbasi`
+- Password: `kashanabbabb`

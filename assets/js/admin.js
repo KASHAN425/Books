@@ -1,5 +1,8 @@
 (function () {
   const KEY = 'shah_writes_books';
+  const AUTH_KEY = 'shah_writes_admin_auth';
+  const ADMIN_USER = 'kashanabbasi';
+  const ADMIN_PASS = 'kashanabbabb';
 
   function getBooks() {
     const stored = localStorage.getItem(KEY);
@@ -45,8 +48,48 @@
     $('#adminBookTable').html(rows || '<tr><td colspan="5" class="text-muted">No books found.</td></tr>');
   }
 
-  $(document).ready(function () {
+  function showDashboard() {
+    $('#adminLoginWrap').addClass('d-none');
+    $('#adminDashboard').removeClass('d-none');
     renderTable();
+  }
+
+  function showLogin() {
+    $('#adminDashboard').addClass('d-none');
+    $('#adminLoginWrap').removeClass('d-none');
+  }
+
+  function isAuthenticated() {
+    return sessionStorage.getItem(AUTH_KEY) === '1';
+  }
+
+  $(document).ready(function () {
+    if (isAuthenticated()) {
+      showDashboard();
+    } else {
+      showLogin();
+    }
+
+    $('#adminLoginForm').on('submit', function (e) {
+      e.preventDefault();
+      const username = $('#adminUsername').val().trim();
+      const password = $('#adminPassword').val();
+
+      if (username === ADMIN_USER && password === ADMIN_PASS) {
+        sessionStorage.setItem(AUTH_KEY, '1');
+        $('#loginError').addClass('d-none');
+        $('#adminLoginForm')[0].reset();
+        showDashboard();
+        return;
+      }
+
+      $('#loginError').removeClass('d-none');
+    });
+
+    $('#logoutBtn').on('click', function () {
+      sessionStorage.removeItem(AUTH_KEY);
+      showLogin();
+    });
 
     $('#bookForm').on('submit', function (e) {
       e.preventDefault();
