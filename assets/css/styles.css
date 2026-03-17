@@ -1,0 +1,104 @@
+:root {
+  --brand: #5d5fef;
+  --brand2: #8f6bff;
+  --light-bg: #f7f9ff;
+  --text: #27304d;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, #ffffff 0%, #fafcff 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--brand), var(--brand2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-section {
+  background: radial-gradient(circle at top right, #eef0ff, #ffffff 55%);
+}
+
+.hero-card,
+.feature-box,
+.cta-box {
+  border-radius: 18px;
+}
+
+.hero-card {
+  border: 1px solid #e6ebff;
+}
+
+.floating-card {
+  animation: floatY 3s ease-in-out infinite;
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.btn-brand {
+  background: linear-gradient(90deg, var(--brand), var(--brand2));
+  color: #fff;
+  border: 0;
+}
+
+.btn-brand:hover {
+  color: #fff;
+  filter: brightness(.96);
+}
+
+.btn-soft {
+  background: #eef0ff;
+  color: #4445be;
+}
+
+.bg-soft { background: var(--light-bg); }
+
+.feature-box {
+  background: #fff;
+  border: 1px solid #e8ecff;
+  padding: 1.25rem;
+  transition: all .25s ease;
+}
+
+.feature-box:hover,
+.book-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(77, 90, 200, .14);
+}
+
+.book-card {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all .25s ease;
+  background: #fff;
+}
+
+.book-cover {
+  height: 210px;
+  object-fit: cover;
+}
+
+.price-tag {
+  color: #00a06b;
+  font-weight: 600;
+}
+
+.cta-box {
+  background: linear-gradient(120deg, #edf2ff, #f8f0ff);
+  border: 1px solid #e4dcff;
+}
+
+.admin-body { background: #f9fbff; }
+
+#searchInput { min-width: 220px; }
+
+@media (max-width: 768px) {
+  #searchInput, #categoryFilter { width: 100%; }
+}
