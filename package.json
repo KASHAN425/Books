@@ -1,0 +1,13 @@
+{
+  "name": "books",
+  "version": "1.0.0",
+  "description": "SHAH-WRITES eBook storefront with Vercel Blob-backed book data.",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "@vercel/blob": "^1.1.1"
+  }
+}
